@@ -1,6 +1,5 @@
 @echo
 ==============================================
-git init
-git remote add myforkrepo https://github.com/totoqqqq/LostFinder
-git fetch
-git merge myforkrepo/master
+git add *
+git commit -m "커밋문구(양식 : X.X.X - 수정내용) "
+git push myforkrepo master
