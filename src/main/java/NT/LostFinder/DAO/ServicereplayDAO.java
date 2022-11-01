@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Servicereplay;
+import NT.LostFinder.DTO.Servicereplay;
 
 public class ServicereplayDAO {
 	public static ServicereplayDAO sr=null;

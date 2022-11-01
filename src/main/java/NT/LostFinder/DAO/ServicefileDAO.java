@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Servicefile;
+import NT.LostFinder.DTO.Servicefile;
 
 public class ServicefileDAO {
 	public static ServicefileDAO sf=null;

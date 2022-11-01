@@ -1,4 +1,4 @@
-package NT.LostFinder;
+package NT.LostFinder.DTO;
 
 import java.sql.Timestamp;
 
@@ -16,13 +16,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-
-public class Servicefile {
-	@NonNull
-	private String servicefile_uuid;
+public class Serviceboard {
 	private int service_no;
-	private String member_id;
 	@NonNull
-	private String servicefile_name;
-	private Timestamp servicefile_createdate;
+	private String service_title;
+	private String member_ID;
+	@NonNull
+	private String service_content;
+	@NonNull
+	private Timestamp service_createdate;
+	private int service_viewcount;
 }

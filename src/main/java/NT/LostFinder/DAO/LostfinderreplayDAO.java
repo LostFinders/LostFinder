@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Lostfinderreplay;
+import NT.LostFinder.DTO.Lostfinderreplay;
 
 public class LostfinderreplayDAO {
 	public static LostfinderreplayDAO lfr=null;

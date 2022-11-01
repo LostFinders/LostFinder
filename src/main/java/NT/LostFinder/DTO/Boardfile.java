@@ -1,4 +1,4 @@
-package NT.LostFinder;
+package NT.LostFinder.DTO;
 
 import java.sql.Timestamp;
 
@@ -17,12 +17,12 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 
-public class Lostfinderreplay {
-	private String replay_uuid;
+public class Boardfile {
+	@NonNull
+	private String boardfile_uuid;
 	private int board_no;
+	private String member_id;
 	@NonNull
-	private String member_ID;
-	@NonNull
-	private String replay_content;
-	private Timestamp replay_createdate;
+	private String boardfile_name;
+	private Timestamp boardfile_createdate;
 }

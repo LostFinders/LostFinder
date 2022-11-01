@@ -1,4 +1,4 @@
-package NT.LostFinder;
+package NT.LostFinder.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

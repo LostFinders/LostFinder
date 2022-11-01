@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Boardfile;
+import NT.LostFinder.DTO.Boardfile;
 
 public class BoardfileDAO {
 	public static BoardfileDAO bfd=null;

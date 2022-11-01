@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Lostfinderboard;
+import NT.LostFinder.DTO.Lostfinderboard;
 
 public class LostfinderboardDAO {
 	public static LostfinderboardDAO lfb=null;

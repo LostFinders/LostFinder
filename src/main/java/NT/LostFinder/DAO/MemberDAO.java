@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Member;
+import NT.LostFinder.DTO.Member;
 
 public class MemberDAO {
 	public static MemberDAO md=null;

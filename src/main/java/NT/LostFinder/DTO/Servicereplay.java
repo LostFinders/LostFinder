@@ -1,4 +1,4 @@
-package NT.LostFinder;
+package NT.LostFinder.DTO;
 
 import java.sql.Timestamp;
 

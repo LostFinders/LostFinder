@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.PWquestion;
+import NT.LostFinder.DTO.PWquestion;
 
 public class PWquestionDAO {
 	public static PWquestionDAO pwq=null;

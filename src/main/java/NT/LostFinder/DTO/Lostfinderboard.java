@@ -1,4 +1,4 @@
-package NT.LostFinder;
+package NT.LostFinder.DTO;
 
 import java.sql.Timestamp;
 
@@ -16,14 +16,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Serviceboard {
-	private int service_no;
+public class Lostfinderboard {
+	private int board_no;
 	@NonNull
-	private String service_title;
+	private String board_title;
 	private String member_ID;
+	private String board_tag;
+	private int location_no;
 	@NonNull
-	private String service_content;
+	private String board_content;
 	@NonNull
-	private Timestamp service_createdate;
-	private int service_viewcount;
+	private Timestamp board_createdate;
+	private int board_viewcount;
 }

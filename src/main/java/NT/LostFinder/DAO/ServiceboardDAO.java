@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Serviceboard;
+import NT.LostFinder.DTO.Serviceboard;
 
 public class ServiceboardDAO {
 	public static ServiceboardDAO sb=null;

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.Location;
+import NT.LostFinder.DTO.Location;
 
 public class LocationDAO {
 	public static LocationDAO ld=null;
