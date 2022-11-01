@@ -6,7 +6,8 @@
 
   <groupId>NT</groupId>
   <artifactId>LostFinder</artifactId>
-  <version>0.2.0-Base</version>
+  <version>0.2.1-Base</version>
+  <packaging>war</packaging>
 
   <name>LostFinder</name>
   <!-- FIXME change it to the project's website -->
