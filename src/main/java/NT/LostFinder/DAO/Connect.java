@@ -18,7 +18,7 @@ public class Connect {
 		try {
 			if(ds==null) {
 				ctx = new InitialContext();
-				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/xman");
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lostfinder");
 			}
 			return ds.getConnection();
 		} catch (NamingException | SQLException e) {
