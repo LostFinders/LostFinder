@@ -1,3 +1,3 @@
 @echo
 ==============================================
-git clone https://github.com/totoqqqq/LostFinder.git
+git clone https://github.com/LEEJWOO/LostFinder.git
