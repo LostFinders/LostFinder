@@ -1,5 +1,7 @@
 package NT.LostFinder;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,18 +16,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Member {
+
+public class Lostfinderreplay {
+	private String replay_uuid;
+	private int board_no;
 	@NonNull
 	private String member_ID;
 	@NonNull
-	private String member_PW;
-	private String member_name;
-	private String member_phone;
-	private String member_email;
-	private String member_zipcode;
-	private String member_address;
-	private String member_building;
-	private int member_level;
-	private int PWquestion_no;
-	private String member_PWanswer;
+	private String replay_content;
+	private Timestamp replay_createdate;
 }
