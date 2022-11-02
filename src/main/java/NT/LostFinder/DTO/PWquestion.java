@@ -12,6 +12,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PWquestion {
-	private int PWquestion_no;
-	private String PWquestion_str;
+	private int pwquestion_no;
+	private String pwquestion_str;
 }
