@@ -21,7 +21,7 @@ public class Servicereplay {
 	private String replay_uuid;
 	private int service_no;
 	@NonNull
-	private String member_ID;
+	private String member_id;
 	@NonNull
 	private String replay_content;
 	private Timestamp replay_createdate;

@@ -16,9 +16,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Member {
 	@NonNull
-	private String member_ID;
+	private String member_id;
 	@NonNull
-	private String member_PW;
+	private String member_pw;
 	private String member_name;
 	private String member_phone;
 	private String member_email;
@@ -26,6 +26,6 @@ public class Member {
 	private String member_address;
 	private String member_building;
 	private int member_level;
-	private int PWquestion_no;
-	private String member_PWanswer;
+	private int pwquestion_no;
+	private String member_pwanswer;
 }
