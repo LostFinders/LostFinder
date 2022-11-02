@@ -20,7 +20,7 @@ public class Serviceboard {
 	private int service_no;
 	@NonNull
 	private String service_title;
-	private String member_ID;
+	private String member_id;
 	@NonNull
 	private String service_content;
 	@NonNull

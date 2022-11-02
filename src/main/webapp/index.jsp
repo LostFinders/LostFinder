@@ -7,28 +7,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제목 입력</title>
+    <title>회원가입 모듈</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         *{
             font-family: 'Dongle', sans-serif;
+            font-size: 30px;
+        }
+        #login-item{
+            width: 700px;
+            height: auto;
+        }
+        #loginBox{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        #loginleft{
+            width: 60%;
+            height: 100%;
+        }
+        .leftDiv{
+            width: 100%;
+            height: 50%;
+        }
+        #loginright{
+            width: 20%;
+            height: 100%;
+        }
+        .loginInput{
+            width: 90%;
+            height: 90%;
             font-size: 20px;
+            display: block;
+        }
+        .loginInputR{
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            display: block;
+        }
+        #signUp-div{
+            width: 20%;
+            height: 100%;
+        }
+        div{
+            margin: 0px;
+            padding: 0px;
         }
     </style>
 </head>
 <body>
-    <div>
-        ${nickName}님 환영합니다.<br>
-    </div>
+	<!--<a href="ExamServlet">페이지01</a> 서블릿 불러오기.-->
+	<div id="login-item">
+	    <form method="post" name="login" id="loginForm" action="login.member">
+	        <div id="loginBox">
+	            <div id="loginLeft">
+	                <div class="leftDiv">
+	                    <input class="loginInput" type="text" id="id" name="member_id" placeholder="ID를 입력해주세요.">
+	                </div>
+	                <div class="leftDiv">
+	                    <input class="loginInput" type="password" id="pw" name="member_pw" placeholder="PW를 입력해주세요.">
+	                </div>
+	            </div>
+	            <div id="loginRight">
+	                <input class="loginInputR" type="submit" value="로그인">
+	            </div>
+	        </div>
+	    </form>
+	    <div id="signUp-div">
+	        <button id = "createid-btn">회원가입</button>
+	    </div>
+	</div>
+    <div id="loginCheck">
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="board.js"></script>
+	<script src="/miniweb/index.js"></script>
 </body>
 </html>

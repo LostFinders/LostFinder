@@ -20,7 +20,7 @@ public class Lostfinderboard {
 	private int board_no;
 	@NonNull
 	private String board_title;
-	private String member_ID;
+	private String member_id;
 	private String board_tag;
 	private int location_no;
 	@NonNull
