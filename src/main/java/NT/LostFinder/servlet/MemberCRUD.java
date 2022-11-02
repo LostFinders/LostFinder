@@ -47,7 +47,7 @@ public class MemberCRUD extends HttpServlet {
 					hs.setAttribute("member_pwanswer",member.getMember_id());
 					response.sendRedirect("mypage.jsp");
 				}else
-					response.sendRedirect("/");
+					response.sendRedirect("/LostFinder");
 			break;
 			case "logout":
 			break;
