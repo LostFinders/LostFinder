@@ -21,8 +21,7 @@
             width: 600px;
         }
         .text-input{
-            width: 80%;
-            height: 95%;
+            width: 50%;
         }
         .text-input-noright{
             width: 93%;
@@ -43,83 +42,108 @@
 </head>
 <body>
     <div class="signUp-div">
-        <form role="signUp" id="signUp" name="signUp" method="post" action="create.mem">
+        <form role="signUp" id="signUp" name="signUp" method="post" action="create.member">
             <div class="signUp-group">
                 <h2>회원 가입 정보 입력</h2>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">아이디 :</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-text" id="id-text" name="id" type="text" placeholder="아이디를 입력하세요.">
-                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="id-btn" value="중복체크">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-text text-input" id="member_id-text" name="member_id" type="text" placeholder="아이디를 입력하세요.">
+                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_id-btn" value="중복체크">
                     <span id="id-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">비밀번호 :</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="pw-text" name="pw" type="password" placeholder="비밀번호를 입력하세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="member_pw-text" name="member_pw" type="password" placeholder="비밀번호를 입력하세요.">
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">비밀번호 확인:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="pwck-text" name="pwck" type="password" placeholder="비밀번호를 재입력하세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="member_pwck-text" name="member_pwck" type="password" placeholder="비밀번호를 재입력하세요.">
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
-                    <label for="inputdefault">닉네임:</label>
+                <div class="sub-title col-3">
+                    <label for="inputdefault">이름:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="name-text" name="name" type="text" placeholder="닉네임을 입력해주세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="member_name-text" name="member_name" type="text" placeholder="이름을 입력해주세요.">
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">휴대전화 번호:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="phone-text" name="phone" type="text" placeholder="휴대전화 번호를 입력해주세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-text text-input" id="member_phone-text" name="member_phone" type="text" placeholder="휴대전화 번호를 입력하세요.">
+                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_phone-btn" value="중복체크">
+                    <span id="id-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">이메일:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="email-text" name="email" type="text" placeholder="이메일을 입력해주세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-text text-input" id="member_email-text" name="member_email" type="text" placeholder="이메일을 입력하세요.">
+                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_email-btn" value="중복체크">
+                    <span id="id-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">우편번호:</label>
                 </div>
                 <div class="sub-input col-6">
-                    <input class="signUp-control text-input-right" id="zipcode-text" name="zipcode" type="text" placeholder="우편번호를 검색해주세요." readonly>
-                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="zipcode-btn" value="우편번호">
+                    <input class="signUp-control text-input-right" id="member_zipcode-text" name="member_zipcode" type="text" placeholder="우편번호를 검색해주세요." readonly>
+                    <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_zipcode-btn" value="우편번호">
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">주소:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="address-text" name="address" type="text" placeholder="우편번호를 검색해주세요." readonly>
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="member_address-text" name="member_address" type="text" placeholder="우편번호를 검색해주세요." readonly>
                 </div>
             </div>
             <div class="signUp-group row">
-                <div class="sub-title col-2">
+                <div class="sub-title col-3">
                     <label for="inputdefault">세부주소:</label>
                 </div>
-                <div class="sub-input col-10">
-                    <input class="signUp-control text-input-noright" id="building-text" name="building" type="text" placeholder="세부주소를 입력해주세요.">
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="member_building-text" name="member_building" type="text" placeholder="세부주소를 입력해주세요.">
+                </div>
+            </div>
+           	<div class="signUp-group row">
+                <div class="sub-title col-3">
+                    <label for="inputdefault">비밀번호 찾기 질문:</label>
+                </div>
+                <div class="sub-input col-9">
+	                <select class="signUp-control text-input-noright" id="pwquestion_no" name="pwquestion_no">
+					  <option value="" selected="selected">질문을 선택하세요.</option>
+					  <option value="1">기억에 남는 추억의 장소는?</option>
+					  <option value="2">인생의 좌우명은?</option>
+					  <option value="3">자신의 보물 1호는?</option>
+					</select>
+                </div>
+            </div>
+           	<div class="signUp-group row">
+                <div class="sub-title col-3">
+                    <label for="inputdefault">비밀번호 찾기 답:</label>
+                </div>
+                <div class="sub-input col-9">
+                    <input class="signUp-control text-input-noright" id="pwanswer-text" name="member_pwanswer" type="text" placeholder="비밀번호 질문 답변을 입력해주세요.">
                 </div>
             </div>
             <div class="signUp-group row">

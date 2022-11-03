@@ -1,6 +1,7 @@
 package NT.LostFinder.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import NT.LostFinder.DAO.MemberDAO;
 import NT.LostFinder.DTO.Member;
@@ -50,6 +51,11 @@ public class MemberCRUD extends HttpServlet {
 					response.sendRedirect("/LostFinder");
 			break;
 			case "logout":
+			break;
+			case "idcheck":
+				try(PrintWriter pw=new PrintWriter(response.getWriter())){
+					pw.print(MemberDAO.idCheck(request.getParameter("member_id")));
+				}
 			break;
 		}
 	} 
