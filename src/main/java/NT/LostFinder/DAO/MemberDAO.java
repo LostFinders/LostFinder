@@ -35,4 +35,16 @@ public class MemberDAO {
 		}
 		return null;
 	}
+	synchronized public static boolean idCheck(String data) {
+		String sql="select * from member where member_id='"+data+"'";
+		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery();){
+			if(rs.next())
+				return false;
+			else
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

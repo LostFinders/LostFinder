@@ -3,5 +3,5 @@ $("#logout-btn").on("click",function(){
     location.replace("/lostfinder");
 })
 $("#createid-btn").on("click",function(){
-    location.replace("/lostfinder/signUp.jsp");
+    location.replace("signUp.jsp");
 })
