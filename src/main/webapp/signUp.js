@@ -1,14 +1,14 @@
 //RegExp
-//id : 8 ~ 16자 소문자,숫자,_사용가능.
+//id : 8 ~ 16자 대,소문자,숫자 사용가능.
 let regmember_id=/^(?=.*[a-z\dA-Z])[a-z\dA-Z]{8,16}$/;
 //pw : 8 ~ 20자 특수문자(!@#%&) 대,소문자,숫자 혼용 필수.
-let regPw=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*!@#%&)[a-zA-Z\d!@#%&]{8,20}$/;
+let regmember_pw=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%&])[a-zA-Z\d!@#%&]{8,20}$/;
 //name : 2 ~ 5자 한글
-let regName=/^(?=.*[가-힣])[가-힣]{2,5}$/;
+let regmember_name=/^(?=.*[가-힣])[가-힣]{2,5}$/;
 //phone : 휴대전화 숫자만 받음.
-let regPhone=/^01\d{8,9}/;
+let regmember_phone=/^01\d{8,9}$/;
 //email : [영어&숫자] n글자 @ [영어&숫자] n글자+ . +[영어] 2~3글자
-let regEmail=/^[a-zA-Z\d]*@[a-zA-Z\d]*[.][a-zA-Z]{2,3}/;
+let regmember_email=/^[a-zA-Z\d]*@[a-zA-Z\d]*[.][a-zA-Z]{2,3}$/;
 
 
 //signUp
@@ -27,42 +27,50 @@ zipcodeBtn.onclick=function(){
 //signUp form RegExp
 let signUp=document.getElementById("signUp");
 signUp.onsubmit=function(){
-    let id=document.getElementById("id-text");
-    let pw=document.getElementById("pw-text");
-    let pwck=document.getElementById("pwck-text");
-    let name=document.getElementById("name-text");
-    let phone=document.getElementById("phone-text");
-    let email=document.getElementById("email-text");
-    let address=document.getElementById("address-text");
-    let building=document.getElementById("building-text");
+    let member_id=document.getElementById("member_id-text");
+    let member_pw=document.getElementById("member_pw-text");
+    let member_pwck=document.getElementById("member_pwck-text");
+    let member_name=document.getElementById("member_name-text");
+    let member_phone=document.getElementById("member_phone-text");
+    let member_email=document.getElementById("member_email-text");
+    let member_address=document.getElementById("member_address-text");
+    let member_building=document.getElementById("member_building-text");
+    let pwquestion_no=document.getElementById("pwquestion_no-box");
+    let member_pwanswer=document.getElementById("member_pwanswer-text");
     let checkfails=function(object){
         let str;
         switch(object.name){
-            case"id":
+            case"member_id":
                 str="아이디";
                 break;
-            case"pw":
+            case"member_pw":
                 str="비밀번호";
-                pwck.value="";
+                member_pwck.value="";
                 break;
-            case"pwck":
+            case"member_pwck":
                 str="비밀번호 확인"
-                pw.value=""
+                member_pw.value=""
                 break;
-            case"name":
+            case"member_name":
                 str="이름";
                 break;
-            case"phone":
+            case"member_phone":
                 str="휴대전화 번호";
                 break;
-            case"email":
+            case"member_email":
                 str="이메일";
                 break;
-            case"address":
+            case"member_address":
                 str="주소";
                 break;
-            case"building":
+            case"member_building":
                 str="세부주소";
+                break;
+            case"pwquestion_no":
+                str="비밀번호 찾기 질문";
+                break;
+            case"member_pwanswer":
+                str="비밀번호 찾기 답";
                 break;
             default:
                 console.log(object.name+"확인");
@@ -76,52 +84,124 @@ signUp.onsubmit=function(){
         }).then(function(){
             object.value="";
             object.focus();
-            if(object.name=="pwck")
-                pw.focus();
+            if(object.name=="member_pwck")
+                member_pw.focus();
         });
     }
-    if(!(regId.test(id.value))||checked=='f'){
-        checkfails(id);
-        $("#id-text").attr("readonly",false);
+    if(!(regmember_id.test(member_id.value))||checked_id=='false'){
+        checkfails(member_id);
+        $("#member_id-text").attr("readonly",false);
         return false;
     }
-    if(!(regPw.test(pw.value))){
-        checkfails(pw);
+    if(!(regmember_pw.test(member_pw.value))){
+        checkfails(member_pw);
         return false;
     }
-    if(!(pw=pwck)){
-        checkfails(pwck);
+    if(!(member_pw.value==member_pwck.value)){
+        checkfails(member_pwck);
         return false;
     }
-    if(!(regName.test(name.value))){
-        checkfails(name);
+    if(!(regmember_name.test(member_name.value))){
+        checkfails(member_name);
         return false;
     }
-    if(!(regPhone.test(phone.value))){
-        checkfails(phone);
+    if(!(regmember_phone.test(member_phone.value))||checked_phone=='false'){
+        checkfails(member_phone);
+        $("#member_phone-text").attr("readonly",false);
         return false;
     }
-    if(!(regEmail.test(email.value))){
-        checkfails(email);
+    if(!(regmember_email.test(member_email.value))||checked_email=='false'){
+        checkfails(member_email);
+        $("#member_email-text").attr("readonly",false);
         return false;
     }
-    if(address.value==""){
-        checkfails(address);
+    if(member_address.value==""){
+        checkfails(member_address);
         return false;
     }
-    if(building.value==""){
-        checkfails(building);
+    if(member_building.value==""){
+        checkfails(member_building);
         return false;
+    }
+    if(pwquestion_no.value==""){
+	    checkfails(pwquestion_no);
+	    return false;
+    }
+    if(member_pwanswer.value==""){
+	    checkfails(member_pwanswer);
+	    return false;
     }
 }
-regmember_id;
-let checked_id=true;
+let checked_id=false;
 $("#member_id-btn").on("click",function(){
-	if(regmember_id.test($("#member_id-text").val())){}
+	if(regmember_id.test($("#member_id-text").val())){
 		if(checked_id){
+			alert("이미 아이디 검증에 통과했습니다.")
+		}else{
 			$.post("idcheck.member",{member_id:$("#member_id-text").val()},function(data){
-				
+				if(data=="true"){
+					$("#member_id-text").attr("readonly",true);
+					$("#member_id-span").text("사용 가능한 아이디입니다.");
+					checked_id=true;
+				}
+				else if(data=="false")
+					$("#member_id-span").text("사용 불가능한 아이디입니다.");
 			})	
 		}
+	}else
+		$("#member_id-span").text("사용 불가능한 아이디입니다.");
 	}
 );
+let checked_phone=false;
+$("#member_phone-btn").on("click",function(){
+	if(regmember_phone.test($("#member_phone-text").val())){
+		if(checked_phone){
+			alert("이미 휴대전화검증에 통과했습니다.")
+		}else{
+			$.post("phonecheck.member",{member_phone:$("#member_phone-text").val()},function(data){
+				if(data=="true"){
+					$("#member_phone-text").attr("readonly",true);
+					$("#member_phone-span").text("사용 가능한 휴대전화 입니다.");
+					checked_phone=true;
+				}
+				else if(data=="false")
+					$("#member_phone-span").text("사용 불가능한 휴대전화 입니다.");
+			})	
+		}
+	}else
+		$("#member_phone-span").text("사용 불가능한 휴대전화 입니다.");
+	}
+);
+let checked_email=false;
+$("#member_email-btn").on("click",function(){
+	if(regmember_email.test($("#member_email-text").val())){
+		if(checked_email){
+			alert("이미 이메일 검증에 통과했습니다.")
+		}else{
+			$.post("emailcheck.member",{member_email:$("#member_email-text").val()},function(data){
+				if(data=="true"){
+					$("#member_email-text").attr("readonly",true);
+					$("#member_email-span").text("사용 가능한 이메일입니다.");
+					checked_email=true;
+				}
+				else if(data=="false")
+					$("#member_email-span").text("사용 불가능한 이메일입니다.");
+			})	
+		}
+	}else
+		$("#member_email-span").text("사용 불가능한 이메일입니다.");
+	}
+)
+$(window).ready(function(){
+	if(window.location.search.substring(window.location.search.indexOf("sign=")+5,window.location.search.length)=="fail")
+        swal("회원 가입 실패","가입 정보를 확인해주세요.","error");
+	$.post("pwquestionlist.member",function(data){
+		var pwlist=JSON.parse(data);
+		for(var j=0;j<pwlist.length;j++){
+			$("#pwquestion_no-option").after("<option value='"+pwlist[j].pwquestion_no+"'>"+pwlist[j].pwquestion_str+"</option>")
+		}
+	})
+})
+$("#cancel-btn").on("click",function(){
+	 location.replace("/LostFinder");
+});
