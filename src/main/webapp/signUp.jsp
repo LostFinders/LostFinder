@@ -53,7 +53,7 @@
                 <div class="sub-input col-9">
                     <input class="signUp-control text-text text-input" id="member_id-text" name="member_id" type="text" placeholder="아이디를 입력하세요.">
                     <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_id-btn" value="중복체크">
-                    <span id="id-span">중복체크를 해주세요</span>
+                    <span id="member_id-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
@@ -87,7 +87,7 @@
                 <div class="sub-input col-9">
                     <input class="signUp-control text-text text-input" id="member_phone-text" name="member_phone" type="text" placeholder="휴대전화 번호를 입력하세요.">
                     <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_phone-btn" value="중복체크">
-                    <span id="id-span">중복체크를 해주세요</span>
+                    <span id="member_phone-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
@@ -97,7 +97,7 @@
                 <div class="sub-input col-9">
                     <input class="signUp-control text-text text-input" id="member_email-text" name="member_email" type="text" placeholder="이메일을 입력하세요.">
                     <input class="signUp-control id-btn btn-sm btn-outline-primary" type="button" id="member_email-btn" value="중복체크">
-                    <span id="id-span">중복체크를 해주세요</span>
+                    <span id="member_email-span">중복체크를 해주세요</span>
                 </div>
             </div>
             <div class="signUp-group row">
@@ -130,11 +130,8 @@
                     <label for="inputdefault">비밀번호 찾기 질문:</label>
                 </div>
                 <div class="sub-input col-9">
-	                <select class="signUp-control text-input-noright" id="pwquestion_no" name="pwquestion_no">
-					  <option value="" selected="selected">질문을 선택하세요.</option>
-					  <option value="1">기억에 남는 추억의 장소는?</option>
-					  <option value="2">인생의 좌우명은?</option>
-					  <option value="3">자신의 보물 1호는?</option>
+	                <select class="signUp-control text-input-noright" id="pwquestion_no-box" name="pwquestion_no">
+					  <option id="pwquestion_no-option" value="" selected="selected">질문을 선택하세요.</option>
 					</select>
                 </div>
             </div>
@@ -143,13 +140,13 @@
                     <label for="inputdefault">비밀번호 찾기 답:</label>
                 </div>
                 <div class="sub-input col-9">
-                    <input class="signUp-control text-input-noright" id="pwanswer-text" name="member_pwanswer" type="text" placeholder="비밀번호 질문 답변을 입력해주세요.">
+                    <input class="signUp-control text-input-noright" id="member_pwanswer-text" name="member_pwanswer" type="text" placeholder="비밀번호 질문 답변을 입력해주세요.">
                 </div>
             </div>
             <div class="signUp-group row">
                 <div class="sub-title sub-btn col-7">
                     <input class="signUp-control id-btn btn-sm btn-outline-success" type="submit" value="회원가입">
-                    <input class="signUp-control id-btn btn-sm btn-outline-danger" type="button" value="취소">
+                    <input class="signUp-control id-btn btn-sm btn-outline-danger" type="button" id="cancel-btn" value="취소">
                 </div>
             </div>
         </form>
