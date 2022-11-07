@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NT.Lostfinder.MemberMapper">
+	 <insert id="serviceboard_create" parameterType="NT.Lostfinder.DTO.ServiceBoard">
+	 	insert into member values(#{service_no},#{service_title},#{member_id},#{service_content},#{service_createdate},default)
+	 </insert>
+     <select id="member_logincheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
+        select * from member where member_id=#{member_id} and member_pw=#{member_pw}
+     </select>
+     <select id="member_idcheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
+        select * from member where member_id=#{member_id};
+     </select>
+</mapper>

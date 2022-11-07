@@ -24,4 +24,17 @@ public class ServiceboardDAO {
 		}
 		return false;
 	}
+	synchronized public static boolean createboard(Serviceboard data) {
+		String sql="insert into serviceboard values(serviceboard_seq.nextval,?,?,?,sysdate,default)";
+		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
+			ps.setString(1, data.getService_title());
+			ps.setString(2, data.getMember_id());
+			ps.setString(3, data.getService_content());
+			if(ps.executeUpdate()==1)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
