@@ -20,10 +20,10 @@ public class Serviceboard {
 	private int service_no;
 	@NonNull
 	private String service_title;
+	@NonNull
 	private String member_id;
 	@NonNull
 	private String service_content;
-	@NonNull
 	private Timestamp service_createdate;
 	private int service_viewcount;
 }

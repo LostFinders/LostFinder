@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import NT.LostFinder.DAO.MemberDAO;
 import NT.LostFinder.DTO.Member;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,15 +18,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.member")
-@MultipartConfig(
-		fileSizeThreshold=1024*1024,
-		maxFileSize=1024*1024*5,
-		maxRequestSize=1024*1024*10,
-		location="D:\\resource\\"
-		)
-public class MemberCRUD extends HttpServlet {
+public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public MemberCRUD() {
+    public MemberServlet() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
