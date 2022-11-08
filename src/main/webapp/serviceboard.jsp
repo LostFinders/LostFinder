@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 템플릿</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <style>
         *{
-            font-family: 'Dongle', sans-serif;
-            font-size: 20px;
+			font-family: 'Noto Sans KR', sans-serif;
+            font-size: 18px;
         }
         .bgcontents{
             position: absolute;
@@ -52,7 +52,7 @@
 <body>
 	<table border="1" align="center" width="800px">
         <tr>
-            <th colspan="5">자유게시판 ${member_id}님 환영합니다.</th>
+            <th colspan="5">고객상담게시판 ${member_id}님 환영합니다.</th>
         </tr>
         <tr id="checktable">
             <td width="5%"></td>
@@ -66,7 +66,7 @@
                 
             </td>
         </tr>
-        <c:if test="${memberID ne null}">
+        <c:if test="${member_id ne null}">
 	        <tr>
 	            <td colspan=5 align="right">
 	                <button id=boardwriter-btn>작성하기</button>
@@ -78,6 +78,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="board.js"></script>
+	<script src="serviceboard.js"></script>
 </body>
 </html>

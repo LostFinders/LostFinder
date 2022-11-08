@@ -27,6 +27,9 @@ let editId=true;
 $("#freeboard-btn").on("click",function(){
     location.replace("board.jsp?page=1");
 })
+$("#serviceboard-btn").on("click",function(){
+    location.replace("serviceboard.jsp?page=1");
+})
 $("#logout-btn").on("click",function(){
     $.post("logout.mem");
     location.replace("/LostFinder");

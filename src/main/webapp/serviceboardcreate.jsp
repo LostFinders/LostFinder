@@ -10,14 +10,14 @@
     <title>고객 문의 작성</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <style>
         *{
-            font-family: 'Dongle', sans-serif;
-            font-size: 20px;
-            color:black;
+			font-family: 'Noto Sans KR', sans-serif;
+            font-size: 18px;
+            color: black;
         }
         #filelist-span{
         	font-size: 8px
@@ -71,7 +71,7 @@
 				<form action="create.serviceboard" method="post" enctype="multipart/form-data" id="data-form">
 					<input type="hidden" id="service_title-hidden" name="service_title">
 					<input type="hidden" id="service_content-hidden" name="service_content">
-					<!-- <input type="file" id="files-input"class="btn file-btn" name="file" multiple>-->
+					<input type="file" id="files-input"class="btn file-btn" name="file" multiple>
 					<span id="filelist-span"></span>
 					<input type="button" id="create-btn" value="작성">
 					<button type="button" id="back-btn">목록으로</button>
