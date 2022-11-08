@@ -66,7 +66,7 @@
                 
             </td>
         </tr>
-        <c:if test="${memberID ne null}">
+        <c:if test="${member_id ne null}">
 	        <tr>
 	            <td colspan=5 align="right">
 	                <button id=boardwriter-btn>작성하기</button>
@@ -78,6 +78,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="board.js"></script>
+	<script src="serviceboard.js"></script>
 </body>
 </html>
