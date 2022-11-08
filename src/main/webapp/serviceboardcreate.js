@@ -14,3 +14,6 @@ $("#files-input").change(function(){
 			$("#filelist-span").text($("#filelist-span").text()+" "+(i+1)+". "+filelist[i].name);
 	}
 });
+$("#back-btn").on("click",function(){
+	location.replace("serviceboard.jsp?page=1");
+})
