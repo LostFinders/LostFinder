@@ -47,8 +47,19 @@ public class ServiceboardServlet extends HttpServlet {
 			break;
 			case "listpage":
 				try(PrintWriter pw=new PrintWriter(response.getWriter())){
-					pw.print((ServiceboardDAO.listPageBoard()+9)/10);
+					if(Integer.parseInt(hs.getAttribute("member_level").toString())==9)
+						pw.print((ServiceboardDAO.listPageBoard()+9)/10);
+					else
+						pw.print((ServiceboardDAO.listPageBoard(hs.getAttribute("member_id").toString())+9)/10);
 				}
+			break;
+			case "view":
+				Serviceboard serviceboardData=ServiceboardDAO.viewPageBoard(Integer.parseInt(request.getParameter("service_no")));
+				request.setAttribute("serviceBoardData", serviceboardData);
+				request.getRequestDispatcher("serviceboardview.jsp").forward(request, response);
+			break;
+			case "delete":
+				
 			break;
 		}
 	}

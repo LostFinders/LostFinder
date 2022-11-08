@@ -13,7 +13,7 @@ $(window).on("load",function(){
 			for(var i=0;i<lists.length;i++){
 			$("#checktable").after(
        			"<tr><td>"+lists[i].service_no+
-       			"<td><a href='view.board?boardIDs="+lists[i].serivce_no+"'>"+lists[i].service_title+"</a>"+
+       			"<td><a href='view.serviceboard?service_no="+lists[i].service_no+"'>"+lists[i].service_title+"</a>"+
        			"<td>"+lists[i].member_id+
        			"<td>"+lists[i].service_createdate.substring(0,12)+
        			"<td>"+lists[i].service_viewcount+
