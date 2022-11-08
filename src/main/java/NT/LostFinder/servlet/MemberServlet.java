@@ -65,6 +65,9 @@ public class MemberServlet extends HttpServlet {
 			}
 			break;
 			case "logout":
+				hs.setAttribute("order",null);
+				hs.invalidate();
+				response.sendRedirect("/LostFinder");
 			break;
 			case "idcheck":
 				try(PrintWriter pw=new PrintWriter(response.getWriter())){
