@@ -17,7 +17,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 
-public class Servicereplay {
+public class Servicereply {
 	private String replay_uuid;
 	private int service_no;
 	@NonNull
