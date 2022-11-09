@@ -9,9 +9,9 @@ $("#edit-btn").on("click",function(){
         edited=false;
         $("#title").attr({"contenteditable":"true","placeholder":"글 제목"});
         $("#contents").attr({"contenteditable":"true","placeholder":"내용을 입력해주세요."});
+        $("#edit-btn").html("수정 완료");
     }else{
-        edited=true;
-        $.get("update.board"+window.location.search,{boardTitle:$("#title").text(),boardContent:$("#contents").text()});
+        $.get("update.serviceboard"+window.location.search,{service_title:$("#title").text(),service_content:$("#contents").text()});
         location.reload();
     }
 });
@@ -37,7 +37,4 @@ $(document).on("click",".replyedit-btn",function(){
 $(document).on("click",".replyedel-btn",function(){
 	$.post("replydelete.board",{createdate:$(this).attr("value")});
 	location.reload();
-});
-$(".download-btn").on("click",function(){
-	$.get("download.board"+window.location.search,{realName:$(this).val(),vmName:$(this).attr("id")});
 });
