@@ -82,13 +82,12 @@
 		</tr>
 		<tr id="footer">
 			<td align=right>
-				<c:if test="${boardData.boardID == boardFileData[0].boardID}">
-					<c:forEach var="i" items="${boardFileData}" begin="0" end="${fn:length(boardFileData)}" step="1">
-						<form action="download.board" method="get">
-							<input type="hidden" name="vmName" value="${i.vmName}">
-							<input type="hidden" name="realName" value="${i.realName}">
-							<input type="hidden" name="boardIDs" value="${i.boardID}">
-							 ${i.realName} <input type="submit" class="download-btn" value="다운로드">
+				<c:if test="${serviceBoardData.service_no == serviceFileData[0].service_no}">
+					<c:forEach var="i" items="${serviceFileData}" begin="0" end="${fn:length(serviceFileData)}" step="1">
+						<form action="download.serviceboard" method="get">
+							<input type="hidden" class="servicefile_uuid" name="servicefile_uuid" value="${i.servicefile_uuid}">
+							<input type="hidden" class="servicefile_name" name="servicefile_name" value="${i.servicefile_name}">
+							 ${i.servicefile_name} <input type="submit" class="download-btn" value="다운로드">
 						</form>
 					</c:forEach>
 				</c:if>
