@@ -9,6 +9,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="MemberMapper.xml" />
+        <mapper resource="MemberMapper.xml"/>
+        <mapper resource="ServiceboardMapper.xml"/>
     </mappers>
 </configuration>

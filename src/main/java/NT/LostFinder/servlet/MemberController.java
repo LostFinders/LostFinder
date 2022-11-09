@@ -18,9 +18,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("*.member")
-public class MemberServlet extends HttpServlet {
+public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public MemberServlet() {
+    public MemberController() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
