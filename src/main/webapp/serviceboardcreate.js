@@ -15,5 +15,5 @@ $("#files-input").change(function(){
 	}
 });
 $("#back-btn").on("click",function(){
-	location.replace("serviceboard.jsp?page=1");
+	location.replace("list.serviceboard?page=1");
 })

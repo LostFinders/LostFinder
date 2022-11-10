@@ -4,7 +4,7 @@ $("#freeboard-btn").on("click",function(){
     location.replace("board.jsp?page=1");
 })
 $("#serviceboard-btn").on("click",function(){
-    location.replace("serviceboard.jsp?page=1");
+    location.replace("list.serviceboard?page=1");
 })
 $("#logout-btn").on("click",function(){
     $.post("logout.member");

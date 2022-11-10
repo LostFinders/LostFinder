@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
-import com.google.gson.Gson;
-
+import NT.LostFinder.DAO.ServiceboardDAO;
+import NT.LostFinder.DTO.FilePart;
+import NT.LostFinder.DTO.Serviceboard;
+import NT.LostFinder.DTO.Servicefile;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,10 +22,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import NT.LostFinder.DAO.ServiceboardDAO;
-import NT.LostFinder.DTO.FilePart;
-import NT.LostFinder.DTO.Serviceboard;
-import NT.LostFinder.DTO.Servicefile;
 
 @WebServlet("*.serviceboard")
 @MultipartConfig(
@@ -61,28 +59,31 @@ public class ServiceboardController extends HttpServlet {
 						fp.get(i).getPart().write(fp.get(i).getFilePart());
 					}
 					if(ServiceboardDAO.createBoard(new Serviceboard(request.getParameter("service_title"),hs.getAttribute("member_id").toString(),request.getParameter("service_content")),sfile))
-						response.sendRedirect("serviceboard.jsp?page=1");
+						response.sendRedirect("list.serviceboard?page=1");
 					else
 						response.sendRedirect("serviceboardCreate.jsp");
 				}
 				else{
 				if(ServiceboardDAO.createBoard(new Serviceboard(request.getParameter("service_title"),hs.getAttribute("member_id").toString(),request.getParameter("service_content"))))
-					response.sendRedirect("serviceboard.jsp?page=1");
+					response.sendRedirect("list.serviceboard?page=1");
 				else
 					response.sendRedirect("serviceboardCreate.jsp");
 				}
 			break;
 			case "list":
-				try(PrintWriter pw=new PrintWriter(response.getWriter())){
 					if(hs.getAttribute("member_level")==null)
-						pw.print(1);
+						response.sendRedirect("/LostFinder");
 					else {
-						if(Integer.parseInt(hs.getAttribute("member_level").toString())==9)
-							pw.print(new Gson().toJson(ServiceboardDAO.listBoard(Integer.parseInt(request.getParameter("page")))));
-						else
-							pw.print(new Gson().toJson(ServiceboardDAO.listBoard(Integer.parseInt(request.getParameter("page")),hs.getAttribute("member_id").toString())));
+						if(Integer.parseInt(hs.getAttribute("member_level").toString())==9) {
+							request.setAttribute("serviceboardListData", ServiceboardDAO.listBoard(Integer.parseInt(request.getParameter("page"))));
+							request.setAttribute("serviceboardListPage", (ServiceboardDAO.listPageBoard()+9)/10);
+							request.getRequestDispatcher("serviceboard.jsp").forward(request, response);
+						}else {
+							request.setAttribute("serviceboardListData", ServiceboardDAO.listBoard(Integer.parseInt(request.getParameter("page")),hs.getAttribute("member_id").toString()));
+							request.setAttribute("serviceboardListPage", (ServiceboardDAO.listPageBoard(hs.getAttribute("member_id").toString())+9)/10);
+							request.getRequestDispatcher("serviceboard.jsp").forward(request, response);
+						}
 					}
-				}
 			break;
 			case "listpage":
 				try(PrintWriter pw=new PrintWriter(response.getWriter())){
@@ -97,11 +98,14 @@ public class ServiceboardController extends HttpServlet {
 				}
 			break;
 			case "view":
-				Serviceboard serviceboardData=ServiceboardDAO.viewPageBoard(Integer.parseInt(request.getParameter("service_no")));
-				ArrayList<Servicefile> servicefileData=ServiceboardDAO.viewFileBoard(Integer.parseInt(request.getParameter("service_no")));
-				request.setAttribute("serviceBoardData", serviceboardData);
-				request.setAttribute("serviceFileData", servicefileData);
-				request.getRequestDispatcher("serviceboardview.jsp").forward(request, response);
+				if(ServiceboardDAO.addBoardViewCount(Integer.parseInt(request.getParameter("service_no")))) {
+					Serviceboard serviceboardData=ServiceboardDAO.viewPageBoard(Integer.parseInt(request.getParameter("service_no")));
+					ArrayList<Servicefile> servicefileData=ServiceboardDAO.viewFileBoard(Integer.parseInt(request.getParameter("service_no")));
+					request.setAttribute("serviceBoardData", serviceboardData);
+					request.setAttribute("serviceFileData", servicefileData);
+					request.getRequestDispatcher("serviceboardview.jsp").forward(request, response);
+				}else
+					response.sendRedirect("/LostFinder");
 			break;
 			case "delete":
 				ServiceboardDAO.deleteBoard(Integer.parseInt(request.getParameter("service_no")),hs.getAttribute("member_id").toString());

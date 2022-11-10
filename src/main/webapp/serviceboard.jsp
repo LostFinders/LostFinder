@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="day" class="java.util.Date"/>
+<fmt:formatDate value="${day}" pattern="yyyy-MM-dd HH:mm:ss.SSS" var="today"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,19 +93,49 @@
 	                
 	            </td>
 	        </tr>
-	        <c:if test="${member_id ne null}">
-		        <tr>
-		            <td colspan=5 align="right">
-		                <button id=boardwriter-btn>작성하기</button>
-		            </td>
-		        </tr>
+	        <c:if test="${serviceboardListData ne null}">
+	        	<c:forEach var="i" items="${serviceboardListData}" begin="0" end="${fn:length(serviceboardListData)}" step="1">
+	       			<tr>
+	       				<td>${i.service_no}
+		       			<td class="listtitle"><a href="view.serviceboard?service_no=${i.service_no}">${i.service_title}</a>
+		       			<td>${i.member_id}
+		       			<td class="listtime">${fn:substring(i.service_createdate,0,10)}
+		       			<td>${i.service_viewcount}
+	       			</tr>
+	        	</c:forEach>
 	        </c:if>
+	        <c:if test="${serviceboardListPage ne null}">
+       			<tr>
+       				<td colspan="5">
+	       				<div class="d-flex justify-content-center">
+		       				<div>
+		       					<button class="page-btn" id="leftlist-btn">◀</button>
+		       				</div>
+				        	<c:forEach var="j" begin="1" end="${serviceboardListPage}" step="1">
+								<div>
+									<button class="listpage-btn" id="${j}-btn">${j}</button>
+								</div>
+				        	</c:forEach>
+		        			<div>
+		        				<button class="page-btn" id="rightlist-btn">▶</button>
+		        			</div>
+		        		</div>
+	        		</td>
+	        	</tr>
+	        </c:if>
+	        <tr>
+     	    	<td colspan=5 align="right">
+		        	<c:if test="${member_id ne null}">
+		                <button id=boardwriter-btn>작성하기</button>
+		        	</c:if>
+	        	</td>
+	        </tr>
 	    </table>
 	</section>
 	<footer>
 		<div class="d-none d-sm-flex justify-content-center">
 			<div class="d-flex">
-				<div id="siteinfo">사이트 이용안네</div><label>│</label><div id="privacy">개인정보 처리방침</div><label>│</label><div id="khhome">KH정보교육원</div><label>│</label><div id="khphone">02-1544-9970</div>
+				<div id="siteinfo">사이트 이용안내</div><label>│</label><div id="privacy">개인정보 처리방침</div><label>│</label><div id="khhome">KH정보교육원</div><label>│</label><div id="khphone">02-1544-9970</div>
 			</div>
 		</div>
 		<div class="d-none d-xxl-flex justify-content-center">
@@ -126,5 +159,13 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="serviceboard.js"></script>
+	<script>
+		$(document).on("click","#rightlist-btn",function(){
+			let listpage=parseInt(document.location.toString().substring(document.location.toString().lastIndexOf("?page=")+6))+1;
+			if (parseInt(listpage)>=${serviceboardListPage})
+				listpage=${serviceboardListPage};
+			location.replace("list.serviceboard?page="+listpage);
+	});
+	</script>
 </body>
 </html>
