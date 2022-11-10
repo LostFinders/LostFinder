@@ -17,7 +17,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 
-public class Lostfinderreplay {
+public class Lostfinderreply {
 	private String replay_uuid;
 	private int board_no;
 	@NonNull

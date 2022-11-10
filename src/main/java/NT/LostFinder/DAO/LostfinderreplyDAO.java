@@ -4,18 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import NT.LostFinder.DTO.Lostfinderreplay;
+import NT.LostFinder.DTO.Lostfinderreply;
 
-public class LostfinderreplayDAO {
-	public static LostfinderreplayDAO lfr=null;
-	private LostfinderreplayDAO() {
+public class LostfinderreplyDAO {
+	public static LostfinderreplyDAO lfr=null;
+	private LostfinderreplyDAO() {
 	}
-	synchronized public static LostfinderreplayDAO getBoardDAO() {
+	synchronized public static LostfinderreplyDAO getBoardDAO() {
 		if(lfr==null)
-			lfr=new LostfinderreplayDAO();
+			lfr=new LostfinderreplyDAO();
 		return lfr;
 	}
-	synchronized public static boolean example(Lostfinderreplay data) {
+	synchronized public static boolean example(Lostfinderreply data) {
 		String sql="sql commend";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
 				return true;
