@@ -81,25 +81,20 @@
 	        <tr>
 	            <th colspan="5">고객상담게시판 ${member_id}님 환영합니다.</th>
 	        </tr>
-	        <tr id="checktable">
+	        <tr>
 	            <td width="5%"></td>
 	            <td width="60%" align="center">제목</td>
 	            <td width="15%" align="center">작성자</td>
 	            <td width="15%" align="center">날짜</td>
 	            <td width="5%">조회</td>
 	        </tr>        
-	        <tr>
-	            <td id=navi-td colspan=5 align="center">
-	                
-	            </td>
-	        </tr>
 	        <c:if test="${serviceboardListData ne null}">
 	        	<c:forEach var="i" items="${serviceboardListData}" begin="0" end="${fn:length(serviceboardListData)}" step="1">
 	       			<tr>
 	       				<td>${i.service_no}
-		       			<td class="listtitle"><a href="view.serviceboard?service_no=${i.service_no}">${i.service_title}</a>
+		       			<td><a href="view.serviceboard?service_no=${i.service_no}">${i.service_title}</a>
 		       			<td>${i.member_id}
-		       			<td class="listtime">${fn:substring(i.service_createdate,0,10)}
+		       			<td>${fn:substring(i.service_createdate,0,10)}
 		       			<td>${i.service_viewcount}
 	       			</tr>
 	        	</c:forEach>
