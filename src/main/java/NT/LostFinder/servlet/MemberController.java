@@ -57,8 +57,7 @@ public class MemberController extends HttpServlet {
 					hs.setAttribute("member_level",member.getMember_level());
 					hs.setAttribute("pwquestion_no",member.getPwquestion_no());
 					hs.setAttribute("member_pwanswer",member.getMember_pwanswer());
-					response.sendRedirect("mypage.jsp");
-				}else
+				}
 					response.sendRedirect("/LostFinder");
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
