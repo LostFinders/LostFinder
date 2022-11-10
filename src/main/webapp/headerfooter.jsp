@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LostFinder</title>
+    <title>Lostfinder</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
@@ -19,23 +19,16 @@
 			font-family: 'Noto Sans KR', sans-serif;
             font-size: 18px;
         }
-        .list-group-item{
-        	font-size:12px;
-        }
-        .temp-item{
-        	width: 80%;
-        }
-        a:link {
-		    text-decoration: none;
-		    color:black;
-		}
     </style>
 </head>
 <body>
+    <div>
+        ${nickName}님 환영합니다.<br>
+    </div>
     <header>
 	    <nav class="navbar navbar-expand-lg bg-light">
 		  <div class="container-fluid">
-		    <a class="navbar-brand" href="/LostFinder">LostFinder</a>
+		    <a class="navbar-brand" href="#">LostFinder</a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
@@ -53,79 +46,8 @@
 		</nav>
 	</header>
 	<section>
-		<div class="d-flex justify-content-center justify-content-sm-center">
-			<div class="justify-content-center row row-cols-1 row-cols-md-2 row-cols-xl-4">
-				<div class="card col" style="width: 18rem;">
-				  <div class="card-header">
-				    분실물 게시판
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				  </ul>
-				</div>
-				<div class="card col" style="width: 18rem;">
-				  <div class="card-header">
-				    사이트 소개
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				  </ul>
-				</div>
-				<div class="card col" style="width: 18rem;">
-				  <div class="card-header">
-				    고객센터 게시판
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				  </ul>
-				</div>
-				<div class="card col" style="width: 18rem;">
-				<c:choose>
-					<c:when test="${member_id == null}">
-						<form action="login.member" method="post">
-							<input type="text" name="member_id">
-							<input type="password" name="member_pw">
-							<input type="submit" class="btn-success" value="로그인">
-						</form>
-					</c:when>
-				    <c:otherwise>
-				        ${member_id} 님 환영합니다.
-			            <div>
-					        <button id = "freeboard-btn">분실물게시판</button>
-					        <button id = "serviceboard-btn">고객상담게시판</button>
-						    <button id = "logout-btn">로그아웃</button>
-						    <button id = "editid-btn">회원수정</button>
-						    <button id = "removeid-btn">회원탈퇴</button>
-					    </div>
-				    </c:otherwise>
-				</c:choose>
-				  <!--<div class="card-header">
-				    로그인 아이템
-				  </div>
-				  <ul class="list-group list-group-flush">
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				    <li class="list-group-item">게시글 example 1</li>
-				  </ul>-->
-				</div>
-			</div>
-		</div>
-	</section>
 	
+	</section>
 	<footer>
 		<div class="d-none d-sm-flex justify-content-center">
 			<div class="d-flex">
@@ -152,6 +74,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="index.js"></script>
+	<script src="index2.js"></script>
 </body>
 </html>
