@@ -1,7 +1,7 @@
 let edited=true;
 $("#delete-btn").on("click",function(){
     $.get("delete.serviceboard"+window.location.search);
-    location.replace("serviceboard.jsp?page=1");
+    location.replace("list.serviceboard?page=1");
 });
 $("#edit-btn").on("click",function(){
     if(edited){
@@ -17,7 +17,7 @@ $("#edit-btn").on("click",function(){
 });
 
 $("#back-btn").on("click",function(){
-    location.replace("serviceboard.jsp?page=1");
+    location.replace("list.serviceboard?page=1");
 });
 $("#replyinput-btn").on("click",function(){
 	$.get("replyinput.board"+window.location.search,{boardreplyinput:$("#replyinput-table").text()});
