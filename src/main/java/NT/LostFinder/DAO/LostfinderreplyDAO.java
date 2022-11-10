@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 import NT.LostFinder.DTO.Lostfinderreplay;
 
-public class LostfinderreplayDAO {
-	public static LostfinderreplayDAO lfr=null;
-	private LostfinderreplayDAO() {
+public class LostfinderreplyDAO {
+	public static LostfinderreplyDAO lfr=null;
+	private LostfinderreplyDAO() {
 	}
-	synchronized public static LostfinderreplayDAO getBoardDAO() {
+	synchronized public static LostfinderreplyDAO getBoardDAO() {
 		if(lfr==null)
-			lfr=new LostfinderreplayDAO();
+			lfr=new LostfinderreplyDAO();
 		return lfr;
 	}
 	synchronized public static boolean example(Lostfinderreplay data) {
