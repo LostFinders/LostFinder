@@ -18,11 +18,11 @@ import lombok.ToString;
 @AllArgsConstructor
 
 public class Lostfinderreply {
-	private String replay_uuid;
+	private String reply_uuid;
 	private int board_no;
 	@NonNull
 	private String member_id;
 	@NonNull
-	private String replay_content;
-	private Timestamp replay_createdate;
+	private String reply_content;
+	private Timestamp reply_createdate;
 }

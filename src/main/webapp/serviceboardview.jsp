@@ -92,18 +92,18 @@
 	<section>
 		<table id="boardtable"border=1 align=center>
 			<tr>
-				<th id="title">${serviceBoardData.service_title}</th>
+				<th id="title">${serviceboardData.service_title}</th>
 			</tr>
 			<tr>
-				<td id="meta">${serviceBoardData.member_id} ${serviceBoardData.service_createdate} ${serviceBoardData.service_viewcount}
+				<td id="meta">${serviceboardData.member_id} ${serviceboardData.service_createdate} ${serviceboardData.service_viewcount}
 			</tr>
 			<tr>
-				<td id="contents">${serviceBoardData.service_content}</td>
+				<td id="contents">${serviceboardData.service_content}</td>
 			</tr>
 			<tr id="footer">
 				<td align=right>
-					<c:if test="${serviceBoardData.service_no == serviceFileData[0].service_no}">
-						<c:forEach var="i" items="${serviceFileData}" begin="0" end="${fn:length(serviceFileData)}" step="1">
+					<c:if test="${serviceboardData.service_no == servicefileData[0].service_no}">
+						<c:forEach var="i" items="${servicefileData}" begin="0" end="${fn:length(servicefileData)}" step="1">
 							<form action="download.serviceboard" method="get">
 								<input type="hidden" class="servicefile_uuid" name="servicefile_uuid" value="${i.servicefile_uuid}">
 								<input type="hidden" class="servicefile_name" name="servicefile_name" value="${i.servicefile_name}">
@@ -111,7 +111,7 @@
 							</form>
 						</c:forEach>
 					</c:if>
-					<c:if test="${serviceBoardData.member_id == member_id}">
+					<c:if test="${serviceboardData.member_id == member_id}">
 						<button type=button id="delete-btn">삭제</button>
 						<button type=button id="edit-btn">수정</button>
 					</c:if>
