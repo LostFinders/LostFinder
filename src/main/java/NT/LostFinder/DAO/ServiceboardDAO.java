@@ -65,7 +65,7 @@ public class ServiceboardDAO {
 		return false;
 	}
 	synchronized public static ArrayList<Serviceboard> listBoard(int data, String id){
-		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard where member_id='"+id+"' order by service_no)) where rum <= (select count(*) from serviceboard where member_id='"+id+"') -"+((data-1)*10)+" and rum > (select count(*) from serviceboard where member_id='"+id+"')-"+(data*10)+" order by rum asc";
+		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard where member_id='"+id+"' order by service_no)) where rum <= (select count(*) from serviceboard where member_id='"+id+"') -"+((data-1)*10)+" and rum > (select count(*) from serviceboard where member_id='"+id+"')-"+(data*10)+" order by rum desc";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
 			ArrayList<Serviceboard> lists=new ArrayList<Serviceboard>();
 			if(rs.next()) {
@@ -80,7 +80,7 @@ public class ServiceboardDAO {
 		return null;
 	}
 	synchronized public static ArrayList<Serviceboard> listBoard(int data){
-		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard order by service_no)) where rum <= (select count(*) from serviceboard) -"+((data-1)*10)+" and rum > (select count(*) from serviceboard) -"+(data*10)+" order by rum asc";
+		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard order by service_no)) where rum <= (select count(*) from serviceboard) -"+((data-1)*10)+" and rum > (select count(*) from serviceboard) -"+(data*10)+" order by rum desc";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
 			ArrayList<Serviceboard> lists=new ArrayList<Serviceboard>();
 			if(rs.next()) {
@@ -165,5 +165,15 @@ public class ServiceboardDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	synchronized public static boolean addBoardViewCount(int data) {
+		String sql="update serviceboard set service_viewcount=service_viewcount+1 where service_no='"+data+"'";
+		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
+			if(ps.executeUpdate()==1)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
