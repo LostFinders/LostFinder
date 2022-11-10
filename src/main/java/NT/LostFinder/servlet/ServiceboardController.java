@@ -85,24 +85,10 @@ public class ServiceboardController extends HttpServlet {
 						}
 					}
 			break;
-			case "listpage":
-				try(PrintWriter pw=new PrintWriter(response.getWriter())){
-					if(hs.getAttribute("member_level")==null)
-						pw.print(1);
-					else {
-						if(Integer.parseInt(hs.getAttribute("member_level").toString())==9)
-							pw.print((ServiceboardDAO.listPageBoard()+9)/10);
-						else
-							pw.print((ServiceboardDAO.listPageBoard(hs.getAttribute("member_id").toString())+9)/10);
-					}
-				}
-			break;
 			case "view":
 				if(ServiceboardDAO.addBoardViewCount(Integer.parseInt(request.getParameter("service_no")))) {
-					Serviceboard serviceboardData=ServiceboardDAO.viewPageBoard(Integer.parseInt(request.getParameter("service_no")));
-					ArrayList<Servicefile> servicefileData=ServiceboardDAO.viewFileBoard(Integer.parseInt(request.getParameter("service_no")));
-					request.setAttribute("serviceBoardData", serviceboardData);
-					request.setAttribute("serviceFileData", servicefileData);
+					request.setAttribute("serviceboardData", ServiceboardDAO.viewPageBoard(Integer.parseInt(request.getParameter("service_no"))));
+					request.setAttribute("servicefileData", ServiceboardDAO.viewFileBoard(Integer.parseInt(request.getParameter("service_no"))));
 					request.getRequestDispatcher("serviceboardview.jsp").forward(request, response);
 				}else
 					response.sendRedirect("/LostFinder");
