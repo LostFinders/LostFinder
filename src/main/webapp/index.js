@@ -1,7 +1,7 @@
 let editId=true;
 
 $("#freeboard-btn").on("click",function(){
-    location.replace("board.jsp?page=1");
+    location.replace("list.lostfinderboard?page=1");
 })
 $("#serviceboard-btn").on("click",function(){
     location.replace("list.serviceboard?page=1");
