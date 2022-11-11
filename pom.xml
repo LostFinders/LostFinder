@@ -6,7 +6,7 @@
 
   <groupId>NT</groupId>
   <artifactId>LostFinder</artifactId>
-  <version>0.2.11</version>
+  <version>0.2.12</version>
   <packaging>war</packaging>
 
   <name>LostFinder</name>
