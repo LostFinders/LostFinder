@@ -51,7 +51,7 @@
 	<footer>
 		<div class="d-none d-sm-flex justify-content-center">
 			<div class="d-flex">
-				<div id="siteinfo">사이트 이용안네</div><label>│</label><div id="privacy">개인정보 처리방침</div><label>│</label><div id="khhome">KH정보교육원</div><label>│</label><div id="khphone">02-1544-9970</div>
+				<div id="siteinfo">사이트 이용안내</div><label>│</label><div id="privacy">개인정보 처리방침</div><label>│</label><div id="khhome">KH정보교육원</div><label>│</label><div id="khphone">02-1544-9970</div>
 			</div>
 		</div>
 		<div class="d-none d-xxl-flex justify-content-center">
