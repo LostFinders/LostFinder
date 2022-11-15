@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import NT.LostFinder.DTO.Boardfile;
 import NT.LostFinder.DTO.Lostfinderboard;
-import NT.LostFinder.DTO.Servicefile;
 
 public class LostfinderboardDAO {
 	public static LostfinderboardDAO sb=null;

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NT.Lostfinder.MemberMapper">
-	 <insert id="member_create" parameterType="NT.Lostfinder.DTO.Member">
-	 	insert into member values(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_email},#{member_zipcode},#{member_address},#{member_building},#{member_level},#{pwquestion_no},#{member_pwanswer})
+	 <insert id="member_signup" parameterType="NT.LostFinder.DTO.Member">
+	 	insert into member values(#{member_id},#{member_pw},#{member_name},#{member_phone},#{member_email},#{member_zipcode},#{member_address},#{member_building},default,#{pwquestion_no},#{member_pwanswer})
 	 </insert>
-     <select id="member_logincheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
+     <select id="member_loginCheck" parameterType="HashMap" resultType="NT.LostFinder.DTO.Member">
         select * from member where member_id=#{member_id} and member_pw=#{member_pw}
      </select>
-     <select id="member_idcheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
-        select * from member where member_id=#{member_id};
+     <select id="member_idCheck" parameterType="String" resultType="NT.LostFinder.DTO.Member">
+        select * from member where member_id=#{member_id}
+     </select>
+     <select id="member_phoneCheck" parameterType="String" resultType="NT.LostFinder.DTO.Member">
+        select * from member where member_phone=#{member_phone}
+     </select>
+     <select id="member_emailCheck" parameterType="String" resultType="NT.LostFinder.DTO.Member">
+        select * from member where member_phone=#{member_phone}
+     </select>
+     <select id="pwquestion_list" parameterType="String" resultType="NT.LostFinder.DTO.PWquestion">
+        select * from pwquestion
      </select>
 </mapper>

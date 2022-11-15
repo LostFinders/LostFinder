@@ -94,20 +94,39 @@
 				<div class="card col" style="width: 18rem;">
 				<c:choose>
 					<c:when test="${member_id == null}">
+					  <div class="card-header">
+					    로그인 
+					  </div>
 						<form action="login.member" method="post">
-							<input type="text" name="member_id">
-							<input type="password" name="member_pw">
-							<input type="submit" class="btn-success" value="로그인">
+						  <!-- Email input -->
+						  <div class="form-outline mb-4">
+						    <input type="text" name="member_id" class="form-control" placeholder="아이디를 입력해주세요." />
+						  </div>
+						
+						  <!-- Password input -->
+						  <div class="form-outline mb-4">
+						    <input type="password" name="member_pw" class="form-control" placeholder="패스워드를 입력해주세요." />
+						  </div>						
+						  <!-- Submit button -->
+						  <div class="d-grid gap-2">
+						  	<input type="submit" class="form-control btn btn-primary btn-block btn-12" value="Login" />
+						  </div>						
+						  <!-- Register buttons -->
+						  <div class="text-center">
+						    <p>회원이 아니십니까? <a href="signUp.jsp">회원 가입</a></p>
+						  </div>
 						</form>
 					</c:when>
 				    <c:otherwise>
-				        ${member_id} 님 환영합니다.
+   					  <div class="card-header">
+					    ${member_id} 님 환영합니다.
+					  </div>
 			            <div>
-					        <button id = "freeboard-btn">분실물게시판</button>
-					        <button id = "serviceboard-btn">고객상담게시판</button>
-						    <button id = "logout-btn">로그아웃</button>
-						    <button id = "editid-btn">회원수정</button>
-						    <button id = "removeid-btn">회원탈퇴</button>
+					        <button class="btn btn-sm btn-primary" id = "freeboard-btn">분실물게시판</button>
+					        <button class="btn btn-sm btn-primary" id = "serviceboard-btn">고객상담게시판</button>
+						    <button class="btn btn-sm btn-primary" id = "logout-btn">로그아웃</button>
+						    <button class="btn btn-sm btn-primary" id = "editid-btn">회원수정</button>
+						    <button class="btn btn-sm btn-danger" id = "removeid-btn">회원탈퇴</button>
 					    </div>
 				    </c:otherwise>
 				</c:choose>

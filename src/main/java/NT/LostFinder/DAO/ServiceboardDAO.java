@@ -1,16 +1,18 @@
 package NT.LostFinder.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import NT.LostFinder.SqlManager;
 import NT.LostFinder.DTO.Serviceboard;
 import NT.LostFinder.DTO.Servicefile;
 
 public class ServiceboardDAO {
 	public static ServiceboardDAO sb=null;
+	private static SqlSessionFactory ssf = SqlManager.getInstance();
 	private ServiceboardDAO() {
 	}
 	synchronized public static ServiceboardDAO getBoardDAO() {
@@ -19,160 +21,109 @@ public class ServiceboardDAO {
 		return sb;
 	}
 	synchronized public static boolean example(Serviceboard data) {
-		String sql="sql commend";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
+		try(SqlSession session=ssf.openSession();){
 				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
+		} 
 	}
-	synchronized public static boolean createBoard(Serviceboard data, ArrayList<Servicefile> file) {
-		String sql="insert into serviceboard values(serviceboard_seq.nextval,?,?,?,sysdate,default)";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			ps.setString(1, data.getService_title());
-			ps.setString(2, data.getMember_id());
-			ps.setString(3, data.getService_content());
-			if(ps.executeUpdate()==1){
-				for(int i=0;i<file.size();i++) {
-					sql="insert into servicefile values(?,serviceboard_seq.currval,?,?,sysdate)";
-					try(PreparedStatement psFile=con.prepareStatement(sql)){
-						psFile.setString(1, file.get(i).getServicefile_uuid());
-						psFile.setString(2, file.get(i).getMember_id());
-						psFile.setString(3, file.get(i).getServicefile_name());
-						if(psFile.executeUpdate()!=1)
-							return false;
-					}
-				}
+	synchronized public static boolean createBoard(Serviceboard data, ArrayList<Servicefile> files) {
+		try(SqlSession session=ssf.openSession()){
+			if(session.insert("serviceboard_create",data)==1) {
+				if(files.size()!=0)
+					for(Servicefile file:files)
+						session.insert("servicefile_create",file);
+				session.commit();
 				return true;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return false;
 	}
 	synchronized public static boolean createBoard(Serviceboard data) {
-		String sql="insert into serviceboard values(serviceboard_seq.nextval,?,?,?,sysdate,default)";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			ps.setString(1, data.getService_title());
-			ps.setString(2, data.getMember_id());
-			ps.setString(3, data.getService_content());
-			if(ps.executeUpdate()==1)
+		try(SqlSession session=ssf.openSession()){
+			if(session.insert("serviceboard_create",data)==1) {
+				session.commit();
 				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
+			}
 		}
 		return false;
 	}
 	synchronized public static ArrayList<Serviceboard> listBoard(int data, String id){
-		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard where member_id='"+id+"' order by service_no)) where rum <= (select count(*) from serviceboard where member_id='"+id+"') -"+((data-1)*10)+" and rum > (select count(*) from serviceboard where member_id='"+id+"')-"+(data*10)+" order by rum desc";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			ArrayList<Serviceboard> lists=new ArrayList<Serviceboard>();
-			if(rs.next()) {
-				do 
-					lists.add(new Serviceboard(Integer.parseInt(rs.getString(1)),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5),Integer.parseInt(rs.getString(6))));
-				while(rs.next());
-				return lists;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+		try(SqlSession session=ssf.openSession();){
+			HashMap<String,String> list=new HashMap<String,String>();
+			ArrayList<Serviceboard> sb= new ArrayList<Serviceboard>(); 
+			list.put("data",Integer.toString(data));
+			list.put("id", id);
+			sb.addAll(session.selectList("serviceboard_lists",list));
+			return sb;
+		} 
 	}
 	synchronized public static ArrayList<Serviceboard> listBoard(int data){
-		String sql="select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard order by service_no)) where rum <= (select count(*) from serviceboard) -"+((data-1)*10)+" and rum > (select count(*) from serviceboard) -"+(data*10)+" order by rum desc";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			ArrayList<Serviceboard> lists=new ArrayList<Serviceboard>();
-			if(rs.next()) {
-				do 
-					lists.add(new Serviceboard(Integer.parseInt(rs.getString(1)),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5),Integer.parseInt(rs.getString(6))));
-				while(rs.next());
-				return lists;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+		try(SqlSession session=ssf.openSession();){
+			ArrayList<Serviceboard> sb= new ArrayList<Serviceboard>(); 
+			sb.addAll(session.selectList("serviceboard_listsAdmin",data));
+			return sb;
+		} 
 	}
 	synchronized public static int listPageBoard(String data){
-		String sql="select count(*) from serviceboard where member_id='"+data+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			if(rs.next())
-				return Integer.parseInt(rs.getString(1));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		try(SqlSession session=ssf.openSession();){
+			int check=session.selectOne("serviceboard_listsPageAdmin");
+			if(check>1)
+				return session.selectOne("serviceboard_listsPage",data);
+		} 
 		return 1;
 	}
 	synchronized public static int listPageBoard(){
-		String sql="select count(*) from serviceboard";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			if(rs.next())
-				return Integer.parseInt(rs.getString(1));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		try(SqlSession session=ssf.openSession();){
+			int check=session.selectOne("serviceboard_listsPageAdmin");
+			if(check>1)
+				return session.selectOne("serviceboard_listsPageAdmin");
+		} 
 		return 1;
 	}
 	synchronized public static Serviceboard viewPageBoard(int data) {
-		String sql="select * from serviceboard where service_no='"+data+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			if(rs.next())
-				return new Serviceboard(Integer.parseInt(rs.getString(1)),rs.getString(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5),Integer.parseInt(rs.getString(6)));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+		try(SqlSession session=ssf.openSession();){
+			return session.selectOne("serviceboard_viewboard",data);
+		} 
 	}
 	synchronized public static ArrayList<Servicefile> viewFileBoard(int data) {
-		String sql="select * from servicefile where service_no='"+data+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
-			ArrayList<Servicefile> sf=new ArrayList<Servicefile>();
-			while(rs.next())
-				sf.add(new Servicefile(rs.getString(1),Integer.parseInt(rs.getString(2)),rs.getString(3),rs.getString(4),rs.getTimestamp(5)));
+		try(SqlSession session=ssf.openSession();){
+			ArrayList<Servicefile> sf= new ArrayList<Servicefile>();
+			sf.addAll(session.selectList("serviceboard_viewfile",data));
 			return sf;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
+		} 
 	}
 	synchronized public static boolean deleteBoard(int service_no, String member_id) {
-		String sql="delete from serviceboard where service_no='"+service_no+"' and member_id='"+member_id+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			if(ps.executeUpdate()==1)
+		try(SqlSession session=ssf.openSession();){
+			HashMap<String,String> delete=new HashMap<String,String>();
+			delete.put("service_no", Integer.toString(service_no));
+			delete.put("member_id", member_id);
+			if(session.delete("serviceboard_deleteboard",delete)==1) {
+				session.commit();
 				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			}
+		} 
 		return false;
 	}
 	synchronized public static boolean updateBoard(Serviceboard data) {
-		String sql="update serviceboard set service_title='"+data.getService_title()+"', service_content='"+data.getService_content()+"' where service_no='"+data.getService_no()+"' and member_id='"+data.getMember_id()+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			if(ps.executeUpdate()==1)
+		try(SqlSession session=ssf.openSession();){
+			if(session.update("serviceboard_updateboard",data)==1) {
+				session.commit();
 				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
+			}
 		}
 		return false;
 	}
 	synchronized public static String downloadFile(Servicefile data) {
-		String sql="select * from servicefile where servicefile_uuid='"+data.getServicefile_uuid()+"' and servicefile_name='"+data.getServicefile_name()+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery();){
-			if(rs.next())
-				return rs.getString(1)+"_"+rs.getString(4);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		try(SqlSession session=ssf.openSession();){
+			Servicefile sf=session.selectOne("servicefile_download",data);
+			return sf.getServicefile_uuid()+"_"+sf.getServicefile_name();
 		}
-		return null;
 	}
 	synchronized public static boolean addBoardViewCount(int data) {
-		String sql="update serviceboard set service_viewcount=service_viewcount+1 where service_no='"+data+"'";
-		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			if(ps.executeUpdate()==1)
+		try(SqlSession session=ssf.openSession();){
+			if(session.update("serviceboard_addcount",data)==1) {
+				session.commit();
 				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
+			}
 		}
 		return false;
 	}

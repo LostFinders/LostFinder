@@ -1,5 +1,8 @@
 package NT.LostFinder.DTO;
 
+import java.io.IOException;
+
+import NT.LostFinder.DAO.LostfinderboardDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,22 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.UUID;
-
-import com.google.gson.Gson;
-
-import NT.LostFinder.DAO.LostfinderboardDAO;
-import NT.LostFinder.DAO.ServiceboardDAO;
-import NT.LostFinder.DTO.FilePart;
-import NT.LostFinder.DTO.Lostfinderboard;
-import NT.LostFinder.DTO.Serviceboard;
-import NT.LostFinder.DTO.Servicefile;
 
 @WebServlet("*.lostfinderboard")
 @MultipartConfig(

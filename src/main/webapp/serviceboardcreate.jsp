@@ -47,18 +47,12 @@
         .board-input{
             
         }
-        div{
-        	border:1px solid black;
-        }
         [contenteditable="true"]:empty:before {
 		   content: attr(placeholder);
 		}
     </style>
 </head>
 <body>
-<span>
-	${member_id}님 환영합니다.
-</span>
     <header>
 	    <nav class="navbar navbar-expand-lg bg-light">
 		  <div class="container-fluid">
