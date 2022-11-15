@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="NT.Lostfinder.MemberMapper">
-	 <insert id="serviceboard_create" parameterType="NT.Lostfinder.DTO.ServiceBoard">
-	 	insert into member values(#{service_no},#{service_title},#{member_id},#{service_content},#{service_createdate},default)
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NT.Lostfinder.ServiceboardMapper">
+	 <insert id="serviceboard_create" parameterType="NT.LostFinder.DTO.Serviceboard">
+	 	insert into serviceboard values(serviceboard_seq.nextval,#{service_title},#{member_id},#{service_content},sysdate,default)
 	 </insert>
-     <select id="member_logincheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
-        select * from member where member_id=#{member_id} and member_pw=#{member_pw}
-     </select>
-     <select id="member_idcheck" parameterType="String" resultType="NT.Lostfinder.DTO.Member">
-        select * from member where member_id=#{member_id};
-     </select>
+	 <insert id="servicefile_create" parameterType="NT.LostFinder.DTO.Servicefile">
+	 	insert into servicefile values(#{servicefile_uuid},serviceboard_seq.currval,#{member_id},#{servicefile_name},sysdate)
+	 </insert>
+	 <select id="serviceboard_lists" parameterType="hashmap" resultType="NT.LostFinder.DTO.Serviceboard">
+	 	select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard where member_id=#{id} order by service_no)) where (select count(*) from serviceboard where member_id=#{id})-((#{data}-1)*10) >= rum and rum > (select count(*) from serviceboard where member_id=#{id})-(#{data}*10) order by rum desc
+	 </select>
+ 	 <select id="serviceboard_listsAdmin" parameterType="int" resultType="NT.LostFinder.DTO.Serviceboard">
+	 	select service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select rownum as rum, service_no, service_title, member_id, service_content, service_createdate, service_viewcount from (select * from serviceboard order by service_no)) where (select count(*) from serviceboard )-((#{data}-1)*10) >= rum and rum > (select count(*) from serviceboard)-(#{data}*10) order by rum desc
+	 </select>
+	 <select id="serviceboard_listsPage" parameterType="String" resultType="int">
+	 	select count(*) from serviceboard where member_id=#{data}
+	 </select>
+	 <select id="serviceboard_listsPageAdmin" resultType="int">
+	 	select count(*) from serviceboard
+	 </select>
+	 <select id="serviceboard_viewboard" parameterType="int" resultType="NT.LostFinder.DTO.Serviceboard">
+	 	select * from serviceboard where service_no=#{data}
+	 </select>
+ 	 <select id="serviceboard_viewfile" parameterType="int" resultType="NT.LostFinder.DTO.Servicefile">
+	 	select * from servicefile where service_no=#{data}
+	 </select>
+	 <delete id="serviceboard_deleteboard" parameterType="hashmap">
+	 	delete from serviceboard where service_no=#{service_no} and member_id=#{member_id}
+	 </delete>
+	 <update id="serviceboard_updateboard" parameterType="NT.LostFinder.DTO.Serviceboard">
+	 	update serviceboard set service_title=#{service_title}, service_content=#{service_content} where service_no=#{service_no} and member_id=#{member_id}
+	 </update>
+	 <select id="servicefile_download" parameterType="NT.LostFinder.DTO.Servicefile" resultType="NT.LostFinder.DTO.Servicefile">
+		 select * from servicefile where servicefile_uuid=#{servicefile_uuid} and servicefile_name=#{servicefile_name}
+	 </select>
+	 <update id="serviceboard_addcount" parameterType="int">
+	 	update serviceboard set service_viewcount=service_viewcount+1 where service_no=#{data}
+	 </update>
 </mapper>

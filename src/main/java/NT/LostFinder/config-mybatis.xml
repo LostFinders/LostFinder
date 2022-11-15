@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
  	<environments default="lostfinderDB">
         <environment id="lostfinderDB">
@@ -9,7 +10,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="MemberMapper.xml"/>
-        <mapper resource="ServiceboardMapper.xml"/>
+        <mapper resource="/NT/LostFinder/MemberMapper.xml"/>
+        <mapper resource="/NT/LostFinder/ServiceboardMapper.xml"/>
     </mappers>
 </configuration>
