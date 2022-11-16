@@ -1,8 +1,9 @@
-package NT.LostFinder.DTO;
+package NT.LostFinder.servlet;
 
 import java.io.IOException;
 
 import NT.LostFinder.DAO.LostfinderboardDAO;
+import NT.LostFinder.DTO.Lostfinderboard;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
