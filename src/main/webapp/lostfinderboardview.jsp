@@ -26,18 +26,6 @@
             background: rgba(240,240,240,0.5);
             table-layout:fixed;
 		}
-		#replytable{
-            width: 700px;
-            height: 100px;
-            background: rgba(240,240,240,0.5);
-            table-layout:fixed;
-		}
-		#replylisttable{
-            width: 700px;
-            height: auto;
-            background: rgba(240,240,240,0.5);
-            table-layout:fixed;
-		}
         #title{
        		width:100%;
             height:10%;
@@ -101,29 +89,45 @@
 		<tr>
 			<th id="title" class="classtitle">${lostfinderboardData.board_title }</th>
 		</tr>
+		<tr>
+			<td>
+				<select id="location" disabled>
+					<c:forEach var="j" items="${locationData}" begin="0" end="${fn:length(locationData)}">
+						<c:choose>
+							<c:when test="${lostfinderboardData.location_no==j.location_no}" >
+								<option value="${j.location_no}" selected="selected">${j.location_str}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${j.location_no}">${j.location_str}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
+			</td>
+		</tr>
 		<tr>	
 			<td id ="subtitle" class="classsubtitle">${lostfinderboardData.board_no } ${lostfinderboardData.board_tag } ${lostfinderboardData.board_viewcount }</td>
 		</tr>
 		<tr>
-			<td id="meta" class="meta">${lostfinderboardData.member_id } ${lostfinderboardData.location_no } ${lostfinderboardData.board_createdate }</td>
+			<td id="meta" class="meta">${lostfinderboardData.member_id } ${lostfinderboardData.board_createdate } ${lostfinderboardData.board_viewcount}</td>
 		</tr>
 		<tr>
 			<td id="contents" class="contents">${lostfinderboardData.board_content }</td>
 		</tr>
 		<tr id=footer>
 			<td align=right>
-			<c:if test="${lostfinderboardListData.board_no == boardfileData[0].board_no}">
-				<c:forEach var="i" items="${boardfileData}" begin="0" end="${fn:length(boardfileData)}" step="1">
-					<form action="download.lostfinderboard2" method="get">
+			<c:if test="${lostfinderboardData.board_no == lostfinderfileData[0].board_no}">
+				<c:forEach var="i" items="${lostfinderfileData}" begin="0" end="${fn:length(lostfinderfileData)}" step="1">
+					<form action="download.lostfinderboard" method="get">
 						<input type="hidden" class="boardfile_uuid" name="boardfile_uuid" value="${i.boardfile_uuid}">
-						<input type="hidden" class="boardfile_name" name="boardfile_name" value="${i.boardfile_name}">
-						${i.boardfile_name} <input type="submit" class="download-btn" value="다운로드">
+						<input type="hidden" class="boardfile_name" name="boardfile_name" value="${i.boardfile_name}">${i.boardfile_name} 
+						<input type="submit" class="download-btn" value="다운로드">
 					</form>
 				</c:forEach>
 			</c:if>
 			<c:if test="${lostfinderboardData.member_id == member_id}">
-				<button type=button id="delete-btn">삭제</button>
-				<button type=button id="edit-btn">수정</button>
+				<button type=button id="delete-btn" name = "board_no" value="${i.board_no}">삭제</button>
+				<button type=button id="edit-btn" name = "board_no" value="${i.board_no}">수정</button>
 			</c:if>
 				<button type=button id="back-btn">목록으로</button>
 			</td>

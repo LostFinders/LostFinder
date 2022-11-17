@@ -63,14 +63,28 @@
 			<th id="title" contenteditable=true placeholder="글 제목"></th>
 		</tr>
 		<tr>
+			<td>
+				<select id="location_option">
+					<option id="location_no-option" value="" selected="selected">지원을 선택하세요.</option>
+				</select>
+				<select id ="board_tag">
+					<option id="board_tag-option" value="" selected="selected">습득 유형을 선택하세요.</option>
+						<option value="lost">분실물</option>
+						<option value="find">습득물</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
 			<td id="contents" contenteditable=true placeholder="내용을 입력해주세요."></td>
 		</tr>
 		<tr>
 			<td id="footer" align=right>
 				<form action="create.lostfinderboard" method="post" enctype="multipart/form-data" id="data-form">
 					<input type="hidden" id="lostfinderboard_title-hidden" name="board_title">
+					<input type="hidden" id="lostfinderboard_board_tag-hidden" name="board_tag">
+					<input type="hidden" id="lostfinderboard_location_no-hidden" name="location_no">
 					<input type="hidden" id="lostfinderboard_content-hidden" name="board_content">
-					<!-- <input type="file" id="files-input"class="btn file-btn" name="file" multiple>-->
+					<input type="file" id="files-input"class="btn file-btn" name="file" multiple>
 					<span id="filelist-span"></span>
 					<input type="button" id="create-btn" value="작성">
 					<button type="button" id="back-btn">목록으로</button>
