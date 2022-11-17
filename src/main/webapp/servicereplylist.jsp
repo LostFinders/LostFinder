@@ -29,7 +29,7 @@
    	<table border="1" align="center" height="800px">
    	
    	<tr id="list">
-   		<td>나중에필요한</td>
+   		<td>uuid</td>
    		<td>게시글 번호</td>
    		<td>작성자</td>
    		<td>내용</td>
@@ -60,6 +60,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="ServiceboardreplyList.js"></script>
+	<script src="servicereplylist.js"></script>
 </body>
 </html>
