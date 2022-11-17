@@ -21,12 +21,12 @@ public class MemberDAO {
 		return md;
 	}
 	synchronized public static boolean example(Member data) {
-		try(SqlSession session=ssf.openSession();){
+		try(SqlSession session=ssf.openSession(true);){
 			return true;
 		}
 	}
 	synchronized public static Member loginCheck(Member data) {
-		try(SqlSession session=ssf.openSession();) {
+		try(SqlSession session=ssf.openSession(true);) {
 			HashMap<String,String> loginMap=new HashMap<String,String>();
 			loginMap.put("member_id", data.getMember_id());
 			loginMap.put("member_pw", data.getMember_pw());
@@ -35,7 +35,7 @@ public class MemberDAO {
 		}
 	}
 	synchronized public static boolean idCheck(String data) {
-		try(SqlSession session=ssf.openSession()){
+		try(SqlSession session=ssf.openSession(true)){
 			Member mb=session.selectOne("member_idCheck",data);
 			if(mb==null)
 				return true;
@@ -43,7 +43,7 @@ public class MemberDAO {
 		return false;
 	}
 	synchronized public static boolean phoneCheck(String data) {
-		try(SqlSession session=ssf.openSession()){
+		try(SqlSession session=ssf.openSession(true)){
 			Member mb=session.selectOne("member_phoneCheck",data);
 			if(mb==null)
 				return true;
@@ -51,7 +51,7 @@ public class MemberDAO {
 		return false;
 	}
 	synchronized public static boolean emailCheck(String data) {
-		try(SqlSession session=ssf.openSession()){
+		try(SqlSession session=ssf.openSession(true)){
 			Member mb=session.selectOne("member_emailCheck",data);
 			if(mb==null)
 				return true;
@@ -59,7 +59,7 @@ public class MemberDAO {
 		return false;
 	}
 	synchronized public static ArrayList<PWquestion> pwquestionList() {
-		try(SqlSession session=ssf.openSession()){
+		try(SqlSession session=ssf.openSession(true)){
 			ArrayList<PWquestion> pwls=new ArrayList<PWquestion>();
 			if(session.selectList("pwquestion_list")!=null) {
 				pwls.addAll(session.selectList("pwquestion_list"));
@@ -69,11 +69,28 @@ public class MemberDAO {
 		return null;
 	}
 	synchronized public static boolean signup(Member data) {
-		try(SqlSession session=ssf.openSession()){
-			if(session.insert("member_signup",data)==1) {
-				session.commit();
+		try(SqlSession session=ssf.openSession(true)){
+			if(session.insert("member_signup",data)==1)
 				return true;
-			}
+		}
+		return false;
+	}
+	synchronized public static boolean memberDelete(String member_id) {
+		try(SqlSession session=ssf.openSession(true)){
+			if(session.delete("member_delete",member_id)==1)
+				return true;
+		}
+		return false;
+	}
+	synchronized public static Member memberData(String data) {
+		try(SqlSession session=ssf.openSession(true)){
+			return (Member) session.selectOne("member_data",data);
+		}
+	}
+	synchronized public static boolean memberedit(Member data) {
+		try(SqlSession session=ssf.openSession(true)){
+			if(session.update("member_update",data)==1)
+				return true;
 		}
 		return false;
 	}

@@ -19,4 +19,13 @@
      <select id="pwquestion_list" parameterType="String" resultType="NT.LostFinder.DTO.PWquestion">
         select * from pwquestion
      </select>
+     <delete id="member_delete" parameterType="String">
+     	delete member where member_id=#{data}
+     </delete>
+     <select id="member_data" parameterType="String" resultType="NT.LostFinder.DTO.Member">
+     	select * from member where member_id=#{data}
+     </select>
+     <update id="member_update" parameterType="NT.LostFinder.DTO.Member">
+     	update member set member_pw=#{member_pw},member_name=#{member_name},member_phone=#{member_phone},member_email=#{member_email},member_zipcode=#{member_zipcode},member_address=#{member_address},member_building=#{member_building},pwquestion_no=#{pwquestion_no},member_pwanswer=#{member_pwanswer} where member_id=#{member_id}
+     </update>
 </mapper>
