@@ -17,7 +17,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @AllArgsConstructor
 
-public class Boardfile {
+public class Lostfinderfile {
 	@NonNull
 	private String boardfile_uuid;
 	private int board_no;
