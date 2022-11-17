@@ -27,11 +27,12 @@ public class ServicereplyDAO {
 		return false;
 	}
 	synchronized public static boolean createServicereply(Servicereply data) {
-		String sql="insert into servicereply values(servicereply_seq.nextval,?,?,?,sysdate)";
+		String sql="insert into servicereply values(?,?,?,?,sysdate)";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
-			ps.setString(1, Integer.toString(data.getService_no()));
-			ps.setString(2, data.getMember_id());
-			ps.setString(3, data.getReply_content());
+			ps.setString(1, data.getReply_uuid());
+			ps.setString(2, Integer.toString(data.getService_no()));
+			ps.setString(3, data.getMember_id());
+			ps.setString(4, data.getReply_content());
 			if(ps.executeUpdate()==1)
 				return true;
 		} catch (SQLException e) {
@@ -41,7 +42,7 @@ public class ServicereplyDAO {
 	}
 	
 	synchronized public static ArrayList<Servicereply> listServicereply() { // 담은 객체를 return 값으로 보냄 
-		String sql="select * from servicereply";
+		String sql="select * from servicereply order by reply_createdate asc";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
 			ArrayList<Servicereply>list = new ArrayList<Servicereply>();
 			if(rs.next()) {
@@ -56,8 +57,8 @@ public class ServicereplyDAO {
 		return null;
 	}	
 	
-	synchronized public static ArrayList<Servicereply> viewservicereply() {
-		String sql="select * from servicereply";
+	synchronized public static ArrayList<Servicereply> listServicereply(int data) {
+		String sql="select * from servicereply where service_no = '"+data+"' order by reply_createdate asc";
 		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);ResultSet rs=ps.executeQuery()){
 			ArrayList<Servicereply>list = new ArrayList<Servicereply>();
 			if(rs.next()) {
@@ -69,6 +70,26 @@ public class ServicereplyDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return null;  
+	}
+	synchronized public static boolean deleteReply(Servicereply data) { 
+		String sql="delete from servicereply where reply_uuid ='"+data.getReply_uuid()+"'and member_id='"+data.getMember_id()+"'";
+		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
+			if(ps.executeUpdate()==1)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	synchronized public static boolean updateReply(Servicereply data) {
+		String sql="update servicereply set reply_content = '"+data.getReply_content()+"'where reply_uuid='"+data.getReply_uuid()+"'and service_no='"+data.getService_no()+"'and member_id='"+data.getMember_id()+"' ";
+		try(Connection con=Connect.getInstance();PreparedStatement ps=con.prepareStatement(sql);){
+			if(ps.executeUpdate()==1)	
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
