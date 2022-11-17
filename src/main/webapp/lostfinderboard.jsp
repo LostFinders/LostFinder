@@ -18,6 +18,40 @@
 			font-family: 'Noto Sans KR', sans-serif;
             font-size: 18px;
         }
+        .bgcontents{
+            position: absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 100%;
+        }
+        #tableid{
+        	width:700px;
+        }
+        .postbg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 700px;
+            height: 600px;
+        }
+        .post{
+            float: none; 
+            margin: 0 auto;
+            font-size: 30px;
+            width: 80%;
+            min-width: 500px;
+            height: auto;
+            color: black;
+            text-align: center;
+        }
+        .posts{
+            background: rgba(240,240,240,0.5);
+        }
+        a:link {
+		    text-decoration: none;
+		}
     </style>
 </head>
 	<body>
@@ -42,29 +76,62 @@
 		</nav>
 	</header>
 	<section>
-		<table>
-			<tr id="tableid">	
-				<td>글번호</td>
-				<td>제목</td>
-				<td>작성자아이디</td>
-				<td>날짜</td>
-				<td>작성 태그</td>
-				<td>조회수</td>
+		<table id="tableid"border=1 align=center>
+			<tr>	
+				<td width="5%"></td>
+				<td width="10%">태그</td>
+				<td width="40%" align=center>제목</td>
+				<td width="15%">작성자</td>
+				<td width="20%">날짜</td>
+				<td width="10%">조회수</td>
 			</tr>
-			<c:if test="${lostfinderboardListData ne null}">
-				<c:forEach var="i" items="${lostfinderboardListData}" begin="0" end = "${fn:length(lostfinderboardListData)}" step="1">
+			<c:if test="${lostfinderboardList ne null}">
+				<c:forEach var="i" items="${lostfinderboardList}" begin="0" end = "${fn:length(lostfinderboardList)}" step="1">
 					<tr>
 						<td>${i.board_no }
+						<td>${i.board_tag}
 						<td><a href="view.lostfinderboard?board_no=${i.board_no} ">${i.board_title }</a>
 						<td>${i.member_id }
-						<td>${i.board_createdate }
-						<td>${i.board_tag}
-						<td>${i.board_viewcount }					
+						<td align=center>${i.board_createdate }
+						<td align=center>${i.board_viewcount }	
+					</tr>
 				</c:forEach>
 			</c:if>
+			<c:if test="${lostfinderboardListPage ne null}">
+       			<tr>
+       				<td colspan="6">
+	       				<div class="d-flex justify-content-center">
+		       				<div>
+		       					<button class="page-btn" id="leftlist-btn">◀</button>
+		       				</div>
+				        	<c:forEach var="j" begin="1" end="${lostfinderboardListPage}" step="1">
+								<div>
+									<button class="listpage-btn" id="${j}-btn">${j}</button>
+								</div>
+				        	</c:forEach>
+		        			<div>
+		        				<button class="page-btn" id="rightlist-btn">▶</button>
+		        			</div>
+		        		</div>
+	        		</td>
+	        	</tr>
+	        </c:if>
+	        <tr>
+			<tr>
+     	    	<td colspan=6 align="right">
+		        	<c:if test="${member_id ne null}">
+		                <button id=boardwriter-btn>작성하기</button>
+		                <button type=button id="back-btn">뒤로가기</button>
+		        	</c:if>
+		        	
+	        	</td>
+	        </tr>
 		</table>
 	</section>
 	<footer>
+	<form action="create.lostfinderboard" method="post" enctype="multipart/form-data" id="data-form">
+		<input type="hidden" id="lostfinderboard_location-hidden" name="location_no">
+	</form>
 		<div class="d-none d-sm-flex justify-content-center">
 			<div class="d-flex">
 				<div id="siteinfo">사이트 이용안네</div><label>│</label><div id="privacy">개인정보 처리방침</div><label>│</label><div id="khhome">KH정보교육원</div><label>│</label><div id="khphone">02-1544-9970</div>
@@ -91,7 +158,7 @@
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		<script src="lostfinderboard2.js"></script>
+		<script src="lostfinderboard.js"></script>
 	</body>
 <!-- 		http://localhost:8988/LostFinder/lostfinderboard2.jsp -->
 </html>
