@@ -88,6 +88,38 @@ public class MemberController extends HttpServlet {
 					pw.print(new Gson().toJson(MemberDAO.pwquestionList()));
 				}
 			break;
+			case "delete":
+				try(PrintWriter pw=new PrintWriter(response.getWriter())){
+					pw.print(new Gson().toJson(MemberDAO.memberDelete(hs.getAttribute("member_id").toString())));
+				}
+			break;
+			case "edit":
+				request.setAttribute("memberData",MemberDAO.memberData(hs.getAttribute("member_id").toString()));
+				request.getRequestDispatcher("accountedit.jsp").forward(request, response);
+			break;
+			case "edited":
+				try {
+					md = MessageDigest.getInstance("SHA-256");
+					md.update(request.getParameter("member_pw").getBytes());
+					Member member=new Member(hs.getAttribute("member_id").toString(),String.format("%064x", new BigInteger(1, md.digest())),request.getParameter("member_name"),request.getParameter("member_phone"),request.getParameter("member_email"),request.getParameter("member_zipcode"),request.getParameter("member_address"),request.getParameter("member_building"),1,Integer.parseInt(request.getParameter("pwquestion_no")),request.getParameter("member_pwanswer"));
+					if(MemberDAO.memberedit(member)){
+						hs.setAttribute("member_id",member.getMember_id());
+						hs.setAttribute("member_pw",member.getMember_pw());
+						hs.setAttribute("member_name",member.getMember_name());
+						hs.setAttribute("member_phone",member.getMember_phone());
+						hs.setAttribute("member_email",member.getMember_email());
+						hs.setAttribute("member_zipcode",member.getMember_zipcode());
+						hs.setAttribute("member_address",member.getMember_address());
+						hs.setAttribute("member_building",member.getMember_building());
+						hs.setAttribute("member_level",member.getMember_level());
+						hs.setAttribute("pwquestion_no",member.getPwquestion_no());
+						hs.setAttribute("member_pwanswer",member.getMember_pwanswer());
+					}
+					response.sendRedirect("/LostFinder");
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				}
+			break;
 		}
 	} 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
